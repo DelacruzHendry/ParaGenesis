@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tulipanes</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;1,6..72,400&display=swap">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  --bg:#050a1e;--ink:#f6e9f1;--soft:#b9a3c4;--stem:#3f9a52;--leaf:#34864a}
+html{height:100%;background:var(--bg);scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;min-height:100%;color:var(--ink);font-family:'Newsreader',Georgia,'Times New Roman',serif;
+  background:radial-gradient(ellipse at 70% 40%,#14183a 0%,var(--bg) 65%);overflow-x:hidden}
+#cielo{position:fixed;inset:0;pointer-events:none}
+.estrella{position:absolute;border-radius:50%;background:#fff;animation:brilla var(--t) ease-in-out var(--d) infinite alternate}
+.fugaz{position:absolute;top:14%;left:62%;width:90px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,#fff);transform:rotate(30deg);opacity:0;animation:fugaz 8s ease-in 2s infinite}
+main{position:relative;min-height:100vh;display:grid;grid-template-columns:minmax(0,30ch) minmax(260px,440px);justify-content:center;align-items:center;gap:clamp(20px,3vw,48px);max-width:1100px;margin:0 auto;padding:clamp(24px,6vw,72px)}
+.verso{max-width:32ch}
+blockquote{margin:0;font-size:clamp(1.5rem,3vw,2.2rem);line-height:1.45;font-style:italic;opacity:0;animation:aparece 2.4s ease 4.2s forwards}
+cite{display:block;margin-top:1.2rem;font-style:normal;font-size:1.05rem;color:var(--soft);opacity:0;animation:aparece 1.6s ease 5.4s forwards}
+button{margin-top:2rem;font:inherit;font-size:1rem;color:var(--ink);background:none;border:1px solid var(--soft);border-radius:999px;padding:.45rem 1.1rem;cursor:pointer}
+button:hover{background:rgba(255,255,255,.1)}
+button:focus-visible{outline:3px solid #ff8cbf;outline-offset:3px}
+svg{width:100%;height:auto;max-height:82vh;overflow:visible}
+.ramo{transform-origin:200px 480px;animation:mece 6s ease-in-out 5s infinite alternate}
+.papel{transform-origin:200px 490px;animation:papel 1.2s ease-out backwards}
+.tallo{fill:none;stroke:var(--stem);stroke-width:3.5;stroke-linecap:round;stroke-dasharray:var(--l);animation:crece 1.6s ease-out var(--d) backwards}
+.hoja{fill:url(#gHoja);transform-origin:0 0;animation:brota 1s ease-out var(--d) backwards}
+.flor{transform-origin:0 0;filter:drop-shadow(0 0 7px rgba(255,110,185,.55));animation:abre 1.3s cubic-bezier(.3,1.4,.5,1) var(--d) backwards}
+.lazo{transform-origin:200px 468px;animation:brota 1s cubic-bezier(.3,1.5,.5,1) 3.6s backwards}
+@keyframes crece{from{stroke-dashoffset:var(--l)}to{stroke-dashoffset:0}}
+@keyframes abre{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes brota{from{transform:scale(0)}to{transform:scale(1)}}
+@keyframes papel{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes mece{from{transform:rotate(-1.2deg)}to{transform:rotate(1.2deg)}}
+@keyframes aparece{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
+@keyframes brilla{from{opacity:.15}to{opacity:.95}}
+@keyframes fugaz{0%{opacity:0;transform:translate(0,0) rotate(30deg)}6%{opacity:1}22%{opacity:0;transform:translate(-220px,127px) rotate(30deg)}100%{opacity:0}}
+@media (max-width:760px){main{grid-template-columns:1fr;min-height:0}.verso{max-width:none}svg{max-height:62vh}}
+@media (prefers-reduced-motion:reduce){
+  .tallo,.flor,.hoja,.ramo,.papel,.lazo,.estrella,.fugaz{animation:none!important;stroke-dasharray:none!important}
+  blockquote,cite{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+<div id="cielo"><div class="fugaz"></div></div>
+<main>
+  <section class="verso">
+    <blockquote>Más preciosa es que las piedras preciosas; y todo lo que puedes desear, no se puede comparar a ella.</blockquote>
+    <cite>Proverbios 3:15</cite>
+    <button id="repetir" type="button">Ver de nuevo</button>
+  </section>
+
+  <svg id="dibujo" viewBox="0 0 400 540" role="img" aria-label="Ramo de tulipanes rosados envuelto en papel crema con un lazo rosa, bajo un cielo estrellado">
+    <defs>
+      <linearGradient id="gHoja" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#2c7a40"/><stop offset="1" stop-color="#58b36a"/></linearGradient>
+      <linearGradient id="gAtras" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#d93584"/><stop offset="1" stop-color="#f26aa9"/></linearGradient>
+      <linearGradient id="gFrente" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#f0589c"/><stop offset="1" stop-color="#ffa3cc"/></linearGradient>
+    </defs>
+    <g class="ramo" id="ramo">
+      <g class="papel"><path d="M200 492 L38 268 Q120 226 200 258 Q280 226 362 268 Z" fill="#e7c9b3"/></g>
+      <g id="plantas"></g>
+      <g class="papel">
+        <path d="M200 494 L52 290 Q128 350 200 352 Z" fill="#f8e8da" fill-opacity=".93"/>
+        <path d="M200 494 L348 290 Q272 350 200 352 Z" fill="#f2dac7" fill-opacity=".93"/>
+        <path d="M200 494 L112 330 M200 494 L288 330 M200 494 L200 360" stroke="#d9b8a1" stroke-width="1.2" fill="none" opacity=".7"/>
+      </g>
+      <g class="lazo">
+        <path d="M200 470 C165 440 138 458 150 486 C168 496 192 482 200 472Z" fill="#f4a3c0"/>
+        <path d="M200 470 C235 440 262 458 250 486 C232 496 208 482 200 472Z" fill="#f4a3c0"/>
+        <path d="M200 474 L172 526 L192 516 L203 480Z" fill="#e98bb0"/>
+        <path d="M200 474 L228 526 L208 516 L197 480Z" fill="#e98bb0"/>
+        <rect x="190" y="462" width="20" height="18" rx="6" fill="#ee7ea8"/>
+      </g>
+    </g>
+  </svg>
+</main>
+
+<script>
+(function(){
+  var NS='http://www.w3.org/2000/svg';
+  function el(n,at,p){var e=document.createElementNS(NS,n);for(var k in at)e.setAttribute(k,at[k]);if(p)p.appendChild(e);return e}
+
+  // Estrellas
+  var cielo=document.getElementById('cielo');
+  for(var i=0;i<70;i++){
+    var s=document.createElement('div'),z=Math.random()*2+1;
+    s.className='estrella';
+    s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;width:'+z+'px;height:'+z+'px;--t:'+(1.5+Math.random()*3)+'s;--d:'+(-Math.random()*4)+'s';
+    cielo.appendChild(s);
+  }
+
+  var flores=[
+    {x:125,y:150,r:-10},{x:228,y:118,r:8},{x:178,y:188,r:0},{x:274,y:188,r:16},
+    {x:92,y:238,r:-24},{x:140,y:258,r:-8},{x:234,y:252,r:12}
+  ];
+  var hojas=[
+    {x:190,y:410,r:-55},{x:210,y:410,r:55},{x:186,y:372,r:-32},{x:214,y:366,r:36},
+    {x:172,y:340,r:-74},{x:232,y:344,r:70},{x:200,y:318,r:-6},{x:160,y:395,r:-85}
+  ];
+
+  function dibujar(){
+    var g=document.getElementById('plantas');
+    g.innerHTML='';
+    flores.forEach(function(f,i){
+      var d0=0.6+i*0.25;
+      var path='M200 440 Q'+(200+(f.x-200)*0.3)+' '+(440-(440-f.y)*0.55)+' '+f.x+' '+f.y;
+      var t=el('path',{d:path,'class':'tallo'},g);
+      t.style.setProperty('--l',Math.ceil(t.getTotalLength()));
+      t.style.setProperty('--d',d0+'s');
+    });
+    hojas.forEach(function(h,i){
+      var l=el('g',{transform:'translate('+h.x+' '+h.y+') rotate('+h.r+')'},g);
+      var p=el('path',{d:'M0 0 C-17 -18 -15 -50 0 -74 C15 -50 17 -18 0 0Z','class':'hoja'},l);
+      p.style.setProperty('--d',(1.2+i*0.12)+'s');
+      el('path',{d:'M0 -4 L0 -62',stroke:'#7fcf8e','stroke-opacity':'.5','stroke-width':'1',fill:'none'},l);
+    });
+    flores.forEach(function(f,i){
+      var pos=el('g',{transform:'translate('+f.x+' '+f.y+') rotate('+f.r+')'},g);
+      var fl=el('g',{'class':'flor'},pos);
+      fl.style.setProperty('--d',(1.9+i*0.3)+'s');
+      el('path',{d:'M0 4 C-27 2 -30 -30 -21 -52 C-15 -65 -4 -63 0 -48Z',fill:'url(#gAtras)'},fl);
+      el('path',{d:'M0 4 C27 2 30 -30 21 -52 C15 -65 4 -63 0 -48Z',fill:'url(#gAtras)'},fl);
+      el('path',{d:'M0 4 C-19 0 -20 -34 -10 -54 C-5 -65 5 -65 10 -54 C20 -34 19 0 0 4Z',fill:'url(#gFrente)'},fl);
+      el('path',{d:'M-8 -14 C-11 -28 -9 -42 -5 -52',stroke:'#fff','stroke-opacity':'.45','stroke-width':'2',fill:'none','stroke-linecap':'round'},fl);
+      el('rect',{x:-4,y:2,width:8,height:5,rx:2,fill:'#d46aa3'},fl);
+    });
+  }
+
+  document.getElementById('repetir').addEventListener('click',function(){
+    // reinicia todas las animaciones
+    var cont=document.querySelector('main');
+    cont.style.display='none';void cont.offsetWidth;cont.style.display='';
+    dibujar();
+  });
+  dibujar();
+})();
+</script>
+</body>
+</html>
