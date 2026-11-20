@@ -38,10 +38,11 @@ svg{width:100%;height:auto;max-height:82vh;overflow:visible}
 @keyframes aparece{from{opacity:0;transform:translateX(-12px)}to{opacity:1;transform:none}}
 @keyframes brilla{from{opacity:.15}to{opacity:.95}}
 @keyframes fugaz{0%{opacity:0;transform:translate(0,0) rotate(30deg)}6%{opacity:1}22%{opacity:0;transform:translate(-220px,127px) rotate(30deg)}100%{opacity:0}}
-@media (max-width:760px){main{grid-template-columns:1fr;min-height:0}.verso{max-width:none}svg{max-height:62vh}}
+@media (max-width:760px){main{grid-template-columns:1fr;min-height:0;padding-top:16px}.verso{max-width:none}svg{order:-1;max-height:52vh}}
 @media (prefers-reduced-motion:reduce){
   .tallo,.flor,.hoja,.ramo,.papel,.lazo,.estrella,.fugaz{animation:none!important;stroke-dasharray:none!important}
   blockquote,cite{animation:none;opacity:1}
+  
 }
 </style>
 </head>
